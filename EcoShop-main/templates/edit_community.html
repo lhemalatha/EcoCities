@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Community Event{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Edit Community Event</h2>
+    <div class="card p-4 shadow-sm">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="event_name" class="form-label">Event Name</label>
+                <input type="text" class="form-control" id="event_name" name="event_name" value="{{ post.event_name }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="place" class="form-label">Place</label>
+                <input type="text" class="form-control" id="place" name="place" value="{{ post.place }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="time" class="form-label">Event Time</label>
+                <input type="datetime-local" class="form-control" id="time" name="time" value="{{ post.time }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Event Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required>{{ post.description }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="images" class="form-label">Upload Images</label>
+                <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple>
+            </div>
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

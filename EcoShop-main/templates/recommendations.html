@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Recommended Products - EcoShop{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4 text-center">Recommended Products</h2>
+
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if product.image %}
+                        <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" class="card-img-top" alt="No image">
+                        {% endif %}
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text text-muted mb-2"><strong>Category:</strong> {{ product.category }}</p>
+                            <p class="card-text mb-3">{{ product.description | truncate(100) }}</p>
+                            <ul class="list-group list-group-flush mb-3">
+                                <li class="list-group-item"><strong>Price:</strong> ₹{{ product.price }}</li>
+                                <li class="list-group-item"><strong>Weight:</strong> {{ product.weight }} kg</li>
+                                <li class="list-group-item"><strong>Place:</strong> {{ product.place }}</li>
+                            </ul>
+                            <a href="{{ url_for('products') }}" class="btn btn-primary mt-auto">
+                                <i class="bi bi-shop"></i> View All Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            No recommendations found for this product.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

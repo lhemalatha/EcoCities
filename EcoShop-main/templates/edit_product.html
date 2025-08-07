@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Product - EcoShop{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Edit Product</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm p-4">
+                <!-- Product Edit Form -->
+                <form method="POST" enctype="multipart/form-data">
+                    <!-- Product Name -->
+                    <div class="form-group mb-3">
+                        <label for="name">Product Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-control" 
+                            value="{{ product.name }}" 
+                            required>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="form-group mb-3">
+                        <label for="price">Price (₹)</label>
+                        <input 
+                            type="number" 
+                            id="price" 
+                            name="price" 
+                            class="form-control" 
+                            step="0.01" 
+                            value="{{ product.price }}" 
+                            required>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="form-group mb-3">
+                        <label for="quantity">Quantity</label>
+                        <input 
+                            type="number" 
+                            id="quantity" 
+                            name="quantity" 
+                            class="form-control" 
+                            value="{{ product.quantity }}" 
+                            min="1" 
+                            required>
+                    </div>
+
+                    <!-- Weight -->
+                    <div class="form-group mb-3">
+                        <label for="weight">Weight per Piece (kg)</label>
+                        <input 
+                            type="number" 
+                            id="weight" 
+                            name="weight" 
+                            class="form-control" 
+                            step="0.01" 
+                            value="{{ product.weight }}" 
+                            required>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group mb-3">
+                        <label for="place">Location</label>
+                        <input 
+                            type="text" 
+                            id="place" 
+                            name="place" 
+                            class="form-control" 
+                            value="{{ product.place }}" 
+                            required>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="form-group mb-3">
+                        <label for="category">Category</label>
+                        <input 
+                            type="text" 
+                            id="category" 
+                            name="category" 
+                            class="form-control" 
+                            value="{{ product.category }}" 
+                            readonly>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group mb-3">
+                        <label for="description">Description</label>
+                        <textarea 
+                            id="description" 
+                            name="description" 
+                            class="form-control" 
+                            rows="3" 
+                            required>{{ product.description }}</textarea>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="form-group mb-3">
+                        <label for="tags">Tags (comma-separated)</label>
+                        <input 
+                            type="text" 
+                            id="tags" 
+                            name="tags" 
+                            class="form-control" 
+                            placeholder="e.g. organic, eco-friendly, handmade"
+                            value="{% if product.tags %}{{ product.tags | join(', ') }}{% endif %}">
+                    </div>
+
+                    <!-- Optional image -->
+                    <div class="form-group mb-4">
+                        <label for="file">Change Product Image</label>
+                        <input 
+                            type="file" 
+                            id="file" 
+                            name="file" 
+                            class="form-control" 
+                            accept="image/*">
+                        <small class="form-text text-muted">Only upload if you want to replace the image</small>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Update Product</button>
+                        <a href="{{ url_for('products') }}" class="btn btn-secondary ms-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
